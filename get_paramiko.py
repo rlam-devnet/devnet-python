@@ -18,8 +18,8 @@ def recibir_salida(conexion):
 
 # Definimos nuestro inventario de equipos y comandos a utilizar
 inventario = {
-    "R1": "show version",
-    "R2": "show interface status",
+    "10.144.37.7": "show version",
+    "10.144.37.5": "show interface status",
 }
 
 
@@ -29,8 +29,8 @@ for equipos, comando in inventario.items():
     parametro_conexion.connect(
         hostname=equipos,
         port=22,
-        username="cisco",
-        password="cisco",
+        username="operaciones",
+        password="c4mb!4r.18",
         look_for_keys=False,
         allow_agent=False,
     )
@@ -48,5 +48,7 @@ for equipos, comando in inventario.items():
     for comando in comandos:
         enviar_comandos(conexion, comando)
         print(recibir_salida(conexion))
-
+        #valores = recibir_salida(conexion)
+        #nuevo_valor = valores.split()
+        # print(nuevo_valor[9])
     conexion.close()
