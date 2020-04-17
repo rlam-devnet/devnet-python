@@ -29,8 +29,8 @@ for equipos, comando in inventario.items():
     parametro_conexion.connect(
         hostname=equipos,
         port=22,
-        username="operaciones",
-        password="c4mb!4r.18",
+        username="xxx",
+        password="xxx",
         look_for_keys=False,
         allow_agent=False,
     )
@@ -45,10 +45,18 @@ for equipos, comando in inventario.items():
         comando,
     ]
 
+    output_conca = ""
+
     for comando in comandos:
         enviar_comandos(conexion, comando)
-        print(recibir_salida(conexion))
+        output_conca = output_conca + recibir_salida(conexion)
+        # print(recibir_salida(conexion))
         #valores = recibir_salida(conexion)
         #nuevo_valor = valores.split()
         # print(nuevo_valor[9])
     conexion.close()
+
+    # Abrimos un nuevo archivo de texto para guardar la salida
+    print(f"Escribiendo {equipos} en el archivo")
+    with open(f"{equipos}_1.txt", "w") as handle:
+        handle.write(output_conca)
