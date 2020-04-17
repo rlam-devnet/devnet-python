@@ -1,0 +1,4 @@
+{% for ntp in data.ntps %}
+ntp server {{ ntp }}
+{ % endfor % }
+do write memory
